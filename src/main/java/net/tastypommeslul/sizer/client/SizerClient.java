@@ -1,5 +1,7 @@
 package net.tastypommeslul.sizer.client;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.moulberry.lattice.Lattice;
 import com.moulberry.lattice.element.LatticeElements;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,6 +16,9 @@ import net.minecraft.util.Formatting;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
 
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.file.*;
 import java.text.DecimalFormat;
 
 public class SizerClient implements ClientModInitializer {
@@ -30,6 +35,7 @@ public class SizerClient implements ClientModInitializer {
         registerKeyBindings();
         registerKeyHandlers();
         config = new Config();
+        loadConfig();
         try {
             elements = LatticeElements.fromAnnotations(Text.literal("Sizer Config"), config);
         } catch (Exception e) {
@@ -97,6 +103,34 @@ public class SizerClient implements ClientModInitializer {
             System.err.println("Lattice elements not initialized!");
             return null;
         }
-        return Lattice.createConfigScreen(elements, null, parent);
+        return Lattice.createConfigScreen(elements, SizerClient::saveConfig, parent);
+    }
+    
+    private static final Path FILE = Paths.get("config", "sizer.json");
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    
+    public static void loadConfig() {
+        try {
+            if (Files.notExists(FILE)) {
+                saveConfig();
+                return;
+            }
+            try (Reader r = Files.newBufferedReader(FILE)) {
+                config = GSON.fromJson(r, Config.class);
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+    }
+    
+    public static void saveConfig() {
+        try {
+            Files.createDirectories(FILE.getParent());
+            try (Writer w = Files.newBufferedWriter(FILE)) {
+                GSON.toJson(config, w);
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
     }
 }
