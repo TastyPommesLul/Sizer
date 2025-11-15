@@ -56,5 +56,10 @@ public class Config {
         @LatticeFloatRange(min = 0.25f, max = 2f)
         @LatticeWidgetSlider
         public float shrinkAmount = 0.5f;
+
+        @LatticeOption(title = "Change Rate")
+        @LatticeFloatRange(min = 0.05f, max = 0.25f)
+        @LatticeWidgetSlider
+        public float changeRate = 0.05f;
     }
 }

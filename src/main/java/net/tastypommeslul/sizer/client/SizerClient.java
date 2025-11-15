@@ -77,21 +77,29 @@ public class SizerClient implements ClientModInitializer {
                 }
             }
             while (biggerKey.wasPressed()) {
-                if (config.sizer.shrinkAmount + 0.1f <= 2.0f) {
-                    config.sizer.shrinkAmount += 0.1f;
-                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false);
+                if (config.sizer.shrinkAmount + config.sizer.changeRate <= 2.0f) {
+                    config.sizer.shrinkAmount += config.sizer.changeRate;
+                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(
+                            Text.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false
+                    );
                 } else {
                     config.sizer.shrinkAmount = 2.0f;
-                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Maximum scale reached! " + 2.0), false);
+                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(
+                            Text.literal("Maximum scale reached! " + 2.0), false
+                    );
                 }
             }
             while (smallerKey.wasPressed()) {
-                if (config.sizer.shrinkAmount - 0.1f >= 0.25f) {
-                    config.sizer.shrinkAmount -= 0.1f;
-                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false);
+                if (config.sizer.shrinkAmount - config.sizer.changeRate >= 0.25f) {
+                    config.sizer.shrinkAmount -= config.sizer.changeRate;
+                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(
+                            Text.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false
+                    );
                 } else {
                     config.sizer.shrinkAmount = 0.25f;
-                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Minimum scale reached! " + 0.25), false);
+                    MinecraftClient.getInstance().inGameHud.setOverlayMessage(
+                            Text.literal("Minimum scale reached! " + 0.25), false
+                    );
                 }
             }
         });
