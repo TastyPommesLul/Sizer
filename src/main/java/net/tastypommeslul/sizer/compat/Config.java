@@ -5,6 +5,7 @@ import com.moulberry.lattice.annotation.LatticeCategory;
 import com.moulberry.lattice.annotation.LatticeOption;
 import com.moulberry.lattice.annotation.constraint.LatticeFloatRange;
 import com.moulberry.lattice.annotation.constraint.LatticeShowIf;
+import com.moulberry.lattice.annotation.constraint.LatticeHideIf;
 import com.moulberry.lattice.annotation.widget.LatticeWidgetButton;
 import com.moulberry.lattice.annotation.widget.LatticeWidgetSlider;
 
