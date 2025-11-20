@@ -1,5 +1,6 @@
 package net.tastypommeslul.sizer.mixin;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
@@ -15,7 +16,11 @@ public class MixinPlayerEntityRenderer {
     @Inject(method = "scale(Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("HEAD"))
     private void scale(PlayerEntityRenderState playerEntityRenderState, MatrixStack matrixStack, CallbackInfo ci) {
         if (SizerClient.config == null || !SizerClient.config.sizer.enabled) return;
-
+//        System.out.println("playerState: " + playerEntityRenderState.id);
+//        System.out.println("Client: " + MinecraftClient.getInstance().player.getId());
+        if (!SizerClient.config.sizer.everyone) {
+            if (playerEntityRenderState.id != MinecraftClient.getInstance().player.getId()) return;
+        }
         if (SizerClient.config.sizer.useDifferentValues) {
             matrixStack.scale(
                 SizerClient.config.sizer.shrinkAmountX,

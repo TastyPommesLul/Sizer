@@ -13,6 +13,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
 
@@ -44,29 +45,31 @@ public class SizerClient implements ClientModInitializer {
         }
     }
 
+    private static final KeyBinding.Category CATEGORY = KeyBinding.Category.create(Identifier.of("sizer","sizer"));
     private static void registerKeyBindings() {
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.sizer.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
-                "key.categories.sizer"
+                CATEGORY
         ));
         biggerKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.sizer.bigger",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_EQUAL,
-                "key.categories.sizer"
+                CATEGORY
         ));
         smallerKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.sizer.smaller",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_MINUS,
-                "key.categories.sizer"
+                CATEGORY
         ));
     }
     private static void registerKeyHandlers() {
         DecimalFormat df = new DecimalFormat("0.00");
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while(toggleKey.wasPressed()) {
+                // false => true
                 config.sizer.enabled = !config.sizer.enabled;
                 if (config.sizer.enabled) {
                     MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Enabled Sizer!")
@@ -75,6 +78,7 @@ public class SizerClient implements ClientModInitializer {
                     MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.literal("Disabled Sizer!")
                             .formatted(Formatting.RED, Formatting.BOLD), false);
                 }
+                saveConfig();
             }
             while (biggerKey.wasPressed()) {
                 if (config.sizer.shrinkAmount + config.sizer.changeRate <= 2.0f) {
@@ -88,6 +92,7 @@ public class SizerClient implements ClientModInitializer {
                             Text.literal("Maximum scale reached! " + 2.0), false
                     );
                 }
+                saveConfig();
             }
             while (smallerKey.wasPressed()) {
                 if (config.sizer.shrinkAmount - config.sizer.changeRate >= 0.25f) {
@@ -101,6 +106,7 @@ public class SizerClient implements ClientModInitializer {
                             Text.literal("Minimum scale reached! " + 0.25), false
                     );
                 }
+                saveConfig();
             }
         });
     }

@@ -18,6 +18,10 @@ public class Config {
         @LatticeWidgetButton
         public boolean enabled = true;
 
+        @LatticeOption(title = "Shrink everyone?", description = "on: Shrinks everybody (on server) | off: Shrinks only yourself (server and singleplayer)")
+        @LatticeWidgetButton
+        public boolean everyone = false;
+
         public boolean isEnabled() {
             return enabled;
         }
