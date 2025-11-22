@@ -1,7 +1,6 @@
 package net.tastypommeslul.sizer.mixin;
 
 import net.minecraft.client.MinecraftClient;
-//import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
