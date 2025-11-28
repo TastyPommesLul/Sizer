@@ -1,4 +1,4 @@
-package net.tastypommeslul.sizer.client;
+package net.tastypommeslul.sizer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
