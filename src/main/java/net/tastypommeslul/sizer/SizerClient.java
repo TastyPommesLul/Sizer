@@ -45,9 +45,7 @@ public class SizerClient implements ClientModInitializer {
         }
     }
 
-    // 1.21-1.21.8
-//    private static final String CATEGORY = "key.category.sizer.sizer";
-    // 1.21.9-1.21.10
+
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
     private static void registerKeyBindings() {
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.sizer.toggle",
