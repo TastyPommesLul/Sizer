@@ -10,6 +10,7 @@ import com.moulberry.lattice.annotation.widget.LatticeWidgetButton;
 import com.moulberry.lattice.annotation.widget.LatticeWidgetSlider;
 
 @SuppressWarnings("unused")
+// small test
 public class Config {
     public Config() {}
     @LatticeCategory(name = "Sizer")
