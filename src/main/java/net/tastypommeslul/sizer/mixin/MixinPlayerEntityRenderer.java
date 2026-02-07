@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.tastypommeslul.sizer.SizerClient;
 import org.joml.Quaternionf;
-import org.joml.Quaternionfc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,7 +50,6 @@ public class MixinPlayerEntityRenderer {
                     -SizerClient.config.sizer.shrinkAmountZ
             );
         } else {
-            poseStack.rotateAround(new Quaternionf(), 0, 0, ((float) Math.toRadians(180)));
             float amount = SizerClient.config.sizer.shrinkAmount;
             poseStack.translate(0, -amount * 1.9, 0);
             poseStack.scale(-amount, -amount, -amount);
