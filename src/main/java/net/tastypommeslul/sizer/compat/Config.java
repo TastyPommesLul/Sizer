@@ -28,6 +28,10 @@ public class Config {
             return enabled;
         }
 
+        @LatticeOption(title = "April Fools Update?", description = "Flips the player model upside down (does still size up/down)")
+        @LatticeWidgetButton
+        public boolean aprilFools = false;
+
         @LatticeOption(title = "Use different values?", description = "Use different x, y, z values")
         @LatticeShowIf(function = "isEnabled", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeWidgetButton
