@@ -14,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AvatarRenderer.class)
 public class MixinPlayerEntityRenderer {
-
-    // 1.21.9-1.21.11
     @Inject(method = "scale(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V", at = @At("HEAD"))
     private void scale(AvatarRenderState avatarRenderState, PoseStack poseStack, CallbackInfo ci) {
         if (SizerClient.config == null || !SizerClient.config.sizer.enabled) return;
@@ -38,6 +36,12 @@ public class MixinPlayerEntityRenderer {
         }
     }
 
+
+    /**
+     * method for the april fools "update"
+     * @param poseStack is the stack to change scale and rotation
+     * @param differentValues if the user is using different values for the axes
+     */
     @Unique
     public void aprilFoolsUpdate(PoseStack poseStack, boolean differentValues) {
         if (SizerClient.config == null || !SizerClient.config.sizer.aprilFools) return;

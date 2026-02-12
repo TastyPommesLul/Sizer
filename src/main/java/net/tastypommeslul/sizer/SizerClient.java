@@ -23,13 +23,11 @@ import java.nio.file.*;
 import java.text.DecimalFormat;
 
 public class SizerClient implements ClientModInitializer {
-
     private static LatticeElements elements;
     public static Config config;
     private static KeyMapping toggleKey;
     private static KeyMapping biggerKey;
     private static KeyMapping smallerKey;
-
 
     @Override
     public void onInitializeClient() {
@@ -44,7 +42,6 @@ public class SizerClient implements ClientModInitializer {
             e.printStackTrace();
         }
     }
-
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
     private static void registerKeyBindings() {
@@ -70,7 +67,6 @@ public class SizerClient implements ClientModInitializer {
         DecimalFormat df = new DecimalFormat("0.00");
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while(toggleKey.consumeClick()) {
-                // false => true
                 config.sizer.enabled = !config.sizer.enabled;
                 if (config.sizer.enabled) {
                     Minecraft.getInstance().gui.setOverlayMessage(Component.literal("Enabled Sizer!")
@@ -111,7 +107,6 @@ public class SizerClient implements ClientModInitializer {
             }
         });
     }
-
 
     public static Screen configScreen(Screen parent) {
         if (elements == null) {
