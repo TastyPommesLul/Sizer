@@ -6,7 +6,7 @@ this idea came to me while playing some minecraft, and i decided, why not make i
 
 Contributions to code aswell as ideas are welcome! <3
 
-_it is recommended to use [Mod Menu](https://modrinth.com/mod/modmenu) with this mod, to access the config! tho there are keybinds for: enable/disable, bigger, smaller._
+_it is recommended to use [Mod Menu](https://modrinth.com/mod/modmenu) with this mod, to access the config (there are now commands for this. check out [this](https://modrinth.com/mod/sizer/version/1.4.2) for more info)! tho there are keybinds for: enable/disable, bigger, smaller._
 
 **!!!! WARNING !!!!** <br>
 This is by no means a serious mod, it was a random idea that popped into my head (a so called "schnapsidee" in german).
