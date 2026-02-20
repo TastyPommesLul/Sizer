@@ -26,12 +26,12 @@ public class MixinPlayerEntityRenderer {
         }
         if (SizerClient.config.sizer.useDifferentValues) {
             poseStack.scale(
-                SizerClient.config.sizer.shrinkAmountX,
-                SizerClient.config.sizer.shrinkAmountY,
-                SizerClient.config.sizer.shrinkAmountZ
+                SizerClient.config.sizer.scaleX,
+                SizerClient.config.sizer.scaleY,
+                SizerClient.config.sizer.scaleZ
             );
         } else {
-            float amount = SizerClient.config.sizer.shrinkAmount;
+            float amount = SizerClient.config.sizer.scale;
             poseStack.scale(amount, amount, amount);
         }
     }
@@ -46,15 +46,15 @@ public class MixinPlayerEntityRenderer {
     public void aprilFoolsUpdate(PoseStack poseStack, boolean differentValues) {
         if (SizerClient.config == null || !SizerClient.config.sizer.aprilFools) return;
         if (differentValues) {
-            poseStack.translate(0, -SizerClient.config.sizer.shrinkAmountY * 1.9, 0);
+            poseStack.translate(0, -SizerClient.config.sizer.scaleY * 1.9, 0);
             poseStack.rotateAround(new Quaternionf(), 0, 0, 180);
             poseStack.scale(
-                    -SizerClient.config.sizer.shrinkAmountX,
-                    -SizerClient.config.sizer.shrinkAmountY,
-                    -SizerClient.config.sizer.shrinkAmountZ
+                    -SizerClient.config.sizer.scaleX,
+                    -SizerClient.config.sizer.scaleY,
+                    -SizerClient.config.sizer.scaleZ
             );
         } else {
-            float amount = SizerClient.config.sizer.shrinkAmount;
+            float amount = SizerClient.config.sizer.scale;
             poseStack.translate(0, -amount * 1.9, 0);
             poseStack.scale(-amount, -amount, -amount);
         }

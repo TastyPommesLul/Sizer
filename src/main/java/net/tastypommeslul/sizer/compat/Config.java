@@ -45,25 +45,25 @@ public class Config {
         @LatticeShowIf(function = "isUseDifferentValues", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeFloatRange(min = 0.25f, max = 2f)
         @LatticeWidgetSlider
-        public float shrinkAmountX = 0.5f;
+        public float scaleX = 0.5f;
 
         @LatticeOption(title = "Scale Y")
         @LatticeShowIf(function = "isUseDifferentValues", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeFloatRange(min = 0.25f, max = 2f)
         @LatticeWidgetSlider
-        public float shrinkAmountY = 0.5f;
+        public float scaleY = 0.5f;
 
         @LatticeOption(title = "Scale Z")
         @LatticeShowIf(function = "isUseDifferentValues", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeFloatRange(min = 0.25f, max = 2f)
         @LatticeWidgetSlider
-        public float shrinkAmountZ = 0.5f;
+        public float scaleZ = 0.5f;
 
         @LatticeOption(title = "Scale")
         @LatticeHideIf(function = "isUseDifferentValues", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeFloatRange(min = 0.25f, max = 2f)
         @LatticeWidgetSlider
-        public float shrinkAmount = 0.5f;
+        public float scale = 0.5f;
 
         @LatticeOption(title = "Change Rate")
         @LatticeFloatRange(min = 0.05f, max = 0.25f)

@@ -6,6 +6,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.moulberry.lattice.Lattice;
 import com.moulberry.lattice.element.LatticeElements;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.ChatFormatting;
@@ -41,6 +42,8 @@ public class SizerClient implements ClientModInitializer {
             System.err.println("Failed to initialize Lattice config: " + e.getMessage());
             e.printStackTrace();
         }
+
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, context) -> dispatcher.register(SizerCommands.mainCommand));
     }
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
@@ -78,13 +81,13 @@ public class SizerClient implements ClientModInitializer {
                 saveConfig();
             }
             while (biggerKey.consumeClick()) {
-                if (config.sizer.shrinkAmount + config.sizer.changeRate <= 2.0f) {
-                    config.sizer.shrinkAmount += config.sizer.changeRate;
+                if (config.sizer.scale + config.sizer.changeRate <= 2.0f) {
+                    config.sizer.scale += config.sizer.changeRate;
                     Minecraft.getInstance().gui.setOverlayMessage(
-                            Component.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false
+                            Component.literal("Current Size: " + df.format(config.sizer.scale)), false
                     );
                 } else {
-                    config.sizer.shrinkAmount = 2.0f;
+                    config.sizer.scale = 2.0f;
                     Minecraft.getInstance().gui.setOverlayMessage(
                             Component.literal("Maximum scale reached! " + 2.0), false
                     );
@@ -92,13 +95,13 @@ public class SizerClient implements ClientModInitializer {
                 saveConfig();
             }
             while (smallerKey.consumeClick()) {
-                if (config.sizer.shrinkAmount - config.sizer.changeRate >= 0.25f) {
-                    config.sizer.shrinkAmount -= config.sizer.changeRate;
+                if (config.sizer.scale - config.sizer.changeRate >= 0.25f) {
+                    config.sizer.scale -= config.sizer.changeRate;
                     Minecraft.getInstance().gui.setOverlayMessage(
-                            Component.literal("Current Size: " + df.format(config.sizer.shrinkAmount)), false
+                            Component.literal("Current Size: " + df.format(config.sizer.scale)), false
                     );
                 } else {
-                    config.sizer.shrinkAmount = 0.25f;
+                    config.sizer.scale = 0.25f;
                     Minecraft.getInstance().gui.setOverlayMessage(
                             Component.literal("Minimum scale reached! " + 0.25), false
                     );
