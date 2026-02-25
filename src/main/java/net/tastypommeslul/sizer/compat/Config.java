@@ -14,7 +14,7 @@ public class Config {
     public Config() {}
     @LatticeCategory(name = "Sizer")
     public SizerConfig sizer = new SizerConfig();
-    
+
     public static class SizerConfig {
         @LatticeOption(title = "Enable Sizer?", description = "Enables/disables the mod (visual height)")
         @LatticeWidgetButton
@@ -36,7 +36,7 @@ public class Config {
         @LatticeShowIf(function = "isEnabled", frequency = LatticeDynamicFrequency.EVERY_TICK)
         @LatticeWidgetButton
         public boolean useDifferentValues = false;
-        
+
         public boolean isUseDifferentValues() {
             return useDifferentValues;
         }

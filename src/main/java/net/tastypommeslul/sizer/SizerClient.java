@@ -119,10 +119,10 @@ public class SizerClient implements ClientModInitializer {
         }
         return Lattice.createConfigScreen(elements, SizerClient::saveConfig, parent);
     }
-    
+
     private static final Path FILE = Paths.get("config", "sizer.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    
+
     public static void loadConfig() {
         try {
             if (Files.notExists(FILE)) {
@@ -136,7 +136,7 @@ public class SizerClient implements ClientModInitializer {
             exc.printStackTrace();
         }
     }
-    
+
     public static void saveConfig() {
         try {
             Files.createDirectories(FILE.getParent());

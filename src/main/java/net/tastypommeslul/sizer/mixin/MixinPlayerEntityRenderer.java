@@ -26,9 +26,9 @@ public class MixinPlayerEntityRenderer {
         }
         if (SizerClient.config.sizer.useDifferentValues) {
             poseStack.scale(
-                SizerClient.config.sizer.scaleX,
-                SizerClient.config.sizer.scaleY,
-                SizerClient.config.sizer.scaleZ
+                    SizerClient.config.sizer.scaleX,
+                    SizerClient.config.sizer.scaleY,
+                    SizerClient.config.sizer.scaleZ
             );
         } else {
             float amount = SizerClient.config.sizer.scale;
