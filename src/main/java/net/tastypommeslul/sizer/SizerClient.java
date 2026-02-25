@@ -15,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.tastypommeslul.sizer.command.SizerCommands;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
 
