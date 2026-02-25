@@ -71,8 +71,8 @@ public class SizerClient implements ClientModInitializer {
         DecimalFormat df = new DecimalFormat("0.00");
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while(toggleKey.consumeClick()) {
-                config.sizer.enabled = !config.sizer.enabled;
-                if (config.sizer.enabled) {
+                config.enabled = !config.enabled;
+                if (config.enabled) {
                     Minecraft.getInstance().gui.setOverlayMessage(Component.literal("Enabled Sizer!")
                             .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), false);
                 } else {
@@ -82,13 +82,13 @@ public class SizerClient implements ClientModInitializer {
                 saveConfig();
             }
             while (biggerKey.consumeClick()) {
-                if (config.sizer.scale + config.sizer.changeRate <= 2.0f) {
-                    config.sizer.scale += config.sizer.changeRate;
+                if (config.scale + config.changeRate <= 2.0f) {
+                    config.scale += config.changeRate;
                     Minecraft.getInstance().gui.setOverlayMessage(
-                            Component.literal("Current Size: " + df.format(config.sizer.scale)), false
+                            Component.literal("Current Size: " + df.format(config.scale)), false
                     );
                 } else {
-                    config.sizer.scale = 2.0f;
+                    config.scale = 2.0f;
                     Minecraft.getInstance().gui.setOverlayMessage(
                             Component.literal("Maximum scale reached! " + 2.0), false
                     );
@@ -96,13 +96,13 @@ public class SizerClient implements ClientModInitializer {
                 saveConfig();
             }
             while (smallerKey.consumeClick()) {
-                if (config.sizer.scale - config.sizer.changeRate >= 0.25f) {
-                    config.sizer.scale -= config.sizer.changeRate;
+                if (config.scale - config.changeRate >= 0.25f) {
+                    config.scale -= config.changeRate;
                     Minecraft.getInstance().gui.setOverlayMessage(
-                            Component.literal("Current Size: " + df.format(config.sizer.scale)), false
+                            Component.literal("Current Size: " + df.format(config.scale)), false
                     );
                 } else {
-                    config.sizer.scale = 0.25f;
+                    config.scale = 0.25f;
                     Minecraft.getInstance().gui.setOverlayMessage(
                             Component.literal("Minimum scale reached! " + 0.25), false
                     );

@@ -10,19 +10,19 @@ public enum ToggleOptions {
 
     public void toggleConfigValue() {
         switch (this) {
-            case ENABLED -> SizerClient.config.sizer.enabled = !SizerClient.config.sizer.enabled;
-            case USE_DIFFERENT_VALUES -> SizerClient.config.sizer.useDifferentValues = !SizerClient.config.sizer.useDifferentValues;
-            case EVERYONE -> SizerClient.config.sizer.everyone = !SizerClient.config.sizer.everyone;
-            case APRIL_FOOLS -> SizerClient.config.sizer.aprilFools = !SizerClient.config.sizer.aprilFools;
+            case ENABLED -> SizerClient.config.enabled = !SizerClient.config.enabled;
+            case USE_DIFFERENT_VALUES -> SizerClient.config.useDifferentValues = !SizerClient.config.useDifferentValues;
+            case EVERYONE -> SizerClient.config.everyone = !SizerClient.config.everyone;
+            case APRIL_FOOLS -> SizerClient.config.aprilFools = !SizerClient.config.aprilFools;
         }
     }
 
     public boolean getConfigValue() {
         return switch (this) {
-            case ENABLED -> SizerClient.config.sizer.enabled;
-            case USE_DIFFERENT_VALUES -> SizerClient.config.sizer.useDifferentValues;
-            case EVERYONE -> SizerClient.config.sizer.everyone;
-            case APRIL_FOOLS -> SizerClient.config.sizer.aprilFools;
+            case ENABLED -> SizerClient.config.enabled;
+            case USE_DIFFERENT_VALUES -> SizerClient.config.useDifferentValues;
+            case EVERYONE -> SizerClient.config.everyone;
+            case APRIL_FOOLS -> SizerClient.config.aprilFools;
         };
     }
 

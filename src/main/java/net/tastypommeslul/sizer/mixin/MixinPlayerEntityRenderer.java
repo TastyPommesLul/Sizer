@@ -16,22 +16,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinPlayerEntityRenderer {
     @Inject(method = "scale(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V", at = @At("HEAD"))
     private void scale(AvatarRenderState avatarRenderState, PoseStack poseStack, CallbackInfo ci) {
-        if (SizerClient.config == null || !SizerClient.config.sizer.enabled) return;
-        if (!SizerClient.config.sizer.everyone) {
+        if (SizerClient.config == null || !SizerClient.config.enabled) return;
+        if (!SizerClient.config.everyone) {
             if (avatarRenderState.id != Minecraft.getInstance().player.getId()) return;
         }
-        if (SizerClient.config.sizer.aprilFools) {
-            aprilFoolsUpdate(poseStack, SizerClient.config.sizer.useDifferentValues);
+        if (SizerClient.config.aprilFools) {
+            aprilFoolsUpdate(poseStack, SizerClient.config.useDifferentValues);
             return;
         }
-        if (SizerClient.config.sizer.useDifferentValues) {
+        if (SizerClient.config.useDifferentValues) {
             poseStack.scale(
-                    SizerClient.config.sizer.scaleX,
-                    SizerClient.config.sizer.scaleY,
-                    SizerClient.config.sizer.scaleZ
+                    SizerClient.config.scaleX,
+                    SizerClient.config.scaleY,
+                    SizerClient.config.scaleZ
             );
         } else {
-            float amount = SizerClient.config.sizer.scale;
+            float amount = SizerClient.config.scale;
             poseStack.scale(amount, amount, amount);
         }
     }
@@ -44,17 +44,17 @@ public class MixinPlayerEntityRenderer {
      */
     @Unique
     public void aprilFoolsUpdate(PoseStack poseStack, boolean differentValues) {
-        if (SizerClient.config == null || !SizerClient.config.sizer.aprilFools) return;
+        if (SizerClient.config == null || !SizerClient.config.aprilFools) return;
         if (differentValues) {
-            poseStack.translate(0, -SizerClient.config.sizer.scaleY * 1.9, 0);
+            poseStack.translate(0, -SizerClient.config.scaleY * 1.9, 0);
             poseStack.rotateAround(new Quaternionf(), 0, 0, 180);
             poseStack.scale(
-                    -SizerClient.config.sizer.scaleX,
-                    -SizerClient.config.sizer.scaleY,
-                    -SizerClient.config.sizer.scaleZ
+                    -SizerClient.config.scaleX,
+                    -SizerClient.config.scaleY,
+                    -SizerClient.config.scaleZ
             );
         } else {
-            float amount = SizerClient.config.sizer.scale;
+            float amount = SizerClient.config.scale;
             poseStack.translate(0, -amount * 1.9, 0);
             poseStack.scale(-amount, -amount, -amount);
         }

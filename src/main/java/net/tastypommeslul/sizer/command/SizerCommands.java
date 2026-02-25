@@ -29,8 +29,8 @@ public class SizerCommands {
                             })));
 
     private static int executeSize(CommandContext<FabricClientCommandSource> ctx) {
-        SizerClient.config.sizer.scale = ctx.getArgument("scale", Float.class);
-        ctx.getSource().sendFeedback(Component.literal("Scale set to " + SizerClient.config.sizer.scale));
+        SizerClient.config.scale = ctx.getArgument("scale", Float.class);
+        ctx.getSource().sendFeedback(Component.literal("Scale set to " + SizerClient.config.scale));
         return Command.SINGLE_SUCCESS;
     }
 
