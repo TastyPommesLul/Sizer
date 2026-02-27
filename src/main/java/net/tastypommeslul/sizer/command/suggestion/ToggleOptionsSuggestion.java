@@ -19,7 +19,7 @@ public class ToggleOptionsSuggestion implements SuggestionProvider<FabricClientC
         Arrays.stream(ToggleOptions.values()).toList().forEach(opt -> args.add(opt.toString()));
 
         for (String arg : args) {
-//            if (arg.equalsIgnoreCase("april_fools")) continue;
+            if (arg.equalsIgnoreCase("april_fools")) continue;
             builder.suggest(arg);
         }
         return builder.buildFuture();
