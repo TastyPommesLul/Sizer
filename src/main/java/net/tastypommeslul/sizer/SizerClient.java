@@ -18,6 +18,8 @@ import net.minecraft.resources.Identifier;
 import net.tastypommeslul.sizer.command.SizerCommands;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Reader;
 import java.io.Writer;
@@ -30,6 +32,7 @@ public class SizerClient implements ClientModInitializer {
     private static KeyMapping toggleKey;
     private static KeyMapping biggerKey;
     private static KeyMapping smallerKey;
+    public static Logger LOGGER = LoggerFactory.getLogger("sizer");
 
     @Override
     public void onInitializeClient() {
@@ -40,8 +43,7 @@ public class SizerClient implements ClientModInitializer {
         try {
             elements = LatticeElements.fromAnnotations(Component.literal("Sizer Config"), config);
         } catch (Exception e) {
-            System.err.println("Failed to initialize Lattice config: " + e.getMessage());
-            e.printStackTrace();
+            LOGGER.error("Failed to initialize Lattice config: {}", e.getMessage());
         }
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, context) -> dispatcher.register(SizerCommands.mainCommand));
@@ -132,8 +134,8 @@ public class SizerClient implements ClientModInitializer {
             try (Reader r = Files.newBufferedReader(FILE)) {
                 config = GSON.fromJson(r, Config.class);
             }
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        } catch (Exception e) {
+            LOGGER.error("Failed to load config: {}", e.getMessage());
         }
     }
 
@@ -143,8 +145,8 @@ public class SizerClient implements ClientModInitializer {
             try (Writer w = Files.newBufferedWriter(FILE)) {
                 GSON.toJson(config, w);
             }
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        } catch (Exception e) {
+            LOGGER.error("Failed to save config: {}", e.getMessage());
         }
     }
 }
