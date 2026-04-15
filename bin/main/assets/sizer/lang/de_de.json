@@ -1,0 +1,33 @@
+{
+  "key.category.sizer.sizer": "Sizer",
+  "key.sizer.toggle": "Sizer umschalten",
+  "key.sizer.bigger": "Größer-Taste",
+  "key.sizer.smaller": "Kleiner-Taste",
+
+  "sizer.enabled": "Sizer aktiviert",
+  "sizer.enabled.description": "Legt fest, ob der Sizer aktiviert ist oder nicht.",
+
+  "sizer.everyone": "Alle Spieler",
+  "sizer.everyone.description": "Legt fest, ob alle Spieler skaliert werden sollen (Multiplayer) oder nur du selbst.",
+
+  "sizer.april_fools": "Aprilscherz",
+  "sizer.april_fools.description": "Aktiviert das Aprilscherz-Update (stellt den Spieler auf den Kopf).",
+
+  "sizer.use_different_values": "Separate Werte nutzen",
+  "sizer.use_different_values.description": "Legt fest, ob verschiedene Werte für alle Achsen (X, Y, Z) genutzt werden sollen.",
+
+  "sizer.scale_x": "X-Skalierung",
+  "sizer.scale_x.description": "Die Skalierung der X-Achse.",
+
+  "sizer.scale_y": "Y-Skalierung",
+  "sizer.scale_y.description": "Die Skalierung der Y-Achse.",
+
+  "sizer.scale_z": "Z-Skalierung",
+  "sizer.scale_z.description": "Die Skalierung der Z-Achse.",
+
+  "sizer.scale": "Skalierung",
+  "sizer.scale.description": "Die Skalierung aller Achsen.",
+
+  "sizer.change_rate": "Änderungsrate",
+  "sizer.change_rate.description": "Die Rate, mit der die Skalierung bei Verwendung der Tastenbelegung geändert wird."
+}
