@@ -32,7 +32,7 @@ dependencies {
 
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
     include(implementation("com.moulberry:lattice:2.0.1+26.1"))
-    implementation("com.terraformersmc:modmenu:${project.modmenu_version}")
+    implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
