@@ -24,8 +24,8 @@ public class Config {
     @LatticeWidgetButton
     public boolean everyone = false;
 
-//    @LatticeOption(title = "sizer.april_fools", description = "!!.description")
-//    @LatticeWidgetButton
+    @LatticeOption(title = "sizer.april_fools", description = "!!.description")
+    @LatticeWidgetButton
     public boolean aprilFools = false;
 
     @LatticeOption(title = "sizer.use_different_values", description = "!!.description")

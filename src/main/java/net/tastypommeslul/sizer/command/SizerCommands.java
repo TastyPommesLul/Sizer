@@ -4,7 +4,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.network.chat.Component;
 import net.tastypommeslul.sizer.SizerClient;
@@ -13,13 +13,13 @@ import net.tastypommeslul.sizer.command.argument.ToggleOptionsType;
 import net.tastypommeslul.sizer.command.suggestion.ToggleOptionsSuggestion;
 
 public class SizerCommands {
-    public static LiteralArgumentBuilder<FabricClientCommandSource> mainCommand = ClientCommandManager.literal("sizer")
-            .then(ClientCommandManager.literal("config").executes(SizerCommands::executeConfig))
-            .then(ClientCommandManager.literal("size")
-                    .then(ClientCommandManager.argument("scale", FloatArgumentType.floatArg(0.25f, 2f))
+    public static LiteralArgumentBuilder<FabricClientCommandSource> mainCommand = ClientCommands.literal("sizer")
+            .then(ClientCommands.literal("config").executes(SizerCommands::executeConfig))
+            .then(ClientCommands.literal("size")
+                    .then(ClientCommands.argument("scale", FloatArgumentType.floatArg(0.25f, 2f))
                             .executes(SizerCommands::executeSize)))
-            .then(ClientCommandManager.literal("toggle")
-                    .then(ClientCommandManager.argument("toggle", new ToggleOptionsType())
+            .then(ClientCommands.literal("toggle")
+                    .then(ClientCommands.argument("toggle", new ToggleOptionsType())
                             .suggests(new ToggleOptionsSuggestion())
                             .executes(ctx -> {
                                 ToggleOptions opt = ctx.getArgument("toggle", ToggleOptions.class);

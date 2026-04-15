@@ -8,7 +8,7 @@ import com.moulberry.lattice.element.LatticeElements;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -46,23 +46,23 @@ public class SizerClient implements ClientModInitializer {
             LOGGER.error("Failed to initialize Lattice config: {}", e.getMessage());
         }
 
-        ClientCommandRegistrationCallback.EVENT.register((dispatcher, context) -> dispatcher.register(SizerCommands.mainCommand));
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, _) -> dispatcher.register(SizerCommands.mainCommand));
     }
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
     private static void registerKeyBindings() {
-        toggleKey = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.sizer.toggle",
+        toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.sizer.toggle",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
                 CATEGORY
         ));
-        biggerKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        biggerKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.sizer.bigger",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_EQUAL,
                 CATEGORY
         ));
-        smallerKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        smallerKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.sizer.smaller",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_MINUS,
