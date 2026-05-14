@@ -13,8 +13,15 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.gui.screens.dialog.DialogScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.dialog.CommonDialogData;
+import net.minecraft.server.dialog.Dialog;
+import net.minecraft.server.dialog.NoticeDialog;
+import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.tastypommeslul.sizer.command.SizerCommands;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
@@ -71,8 +78,9 @@ public class SizerClient implements ClientModInitializer {
     }
     private static void registerKeyHandlers() {
         DecimalFormat df = new DecimalFormat("0.00");
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while(toggleKey.consumeClick()) {
+            while (toggleKey.consumeClick()) {
                 config.enabled = !config.enabled;
                 if (config.enabled) {
                     client.gui.setOverlayMessage(Component.literal("Enabled Sizer!")
