@@ -13,15 +13,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.client.gui.screens.dialog.DialogScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.server.dialog.CommonDialogData;
-import net.minecraft.server.dialog.Dialog;
-import net.minecraft.server.dialog.NoticeDialog;
-import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.tastypommeslul.sizer.command.SizerCommands;
 import net.tastypommeslul.sizer.compat.Config;
 import org.lwjgl.glfw.GLFW;
@@ -43,9 +36,10 @@ public class SizerClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        config = new Config();
+
         registerKeyBindings();
         registerKeyHandlers();
-        config = new Config();
         loadConfig();
         try {
             elements = LatticeElements.fromAnnotations(Component.literal("Sizer Config"), config);
@@ -54,6 +48,7 @@ public class SizerClient implements ClientModInitializer {
         }
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, _) -> dispatcher.register(SizerCommands.mainCommand));
+        config.setEnableLock(false);
     }
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
@@ -81,6 +76,7 @@ public class SizerClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleKey.consumeClick()) {
+                if (config.isEnableLocked()) break;
                 config.enabled = !config.enabled;
                 if (config.enabled) {
                     client.gui.setOverlayMessage(Component.literal("Enabled Sizer!")
@@ -131,7 +127,7 @@ public class SizerClient implements ClientModInitializer {
     }
 
     private static final Path FILE = Paths.get("config", "sizer.json");
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
     public static void loadConfig() {
         try {
@@ -152,6 +148,9 @@ public class SizerClient implements ClientModInitializer {
             Files.createDirectories(FILE.getParent());
             try (Writer w = Files.newBufferedWriter(FILE)) {
                 GSON.toJson(config, w);
+                if (!config.isEnableLocked()) {
+                    config.setEnableLock(config.isEnableLocked(), config.enabled);
+                }
             }
         } catch (Exception e) {
             LOGGER.error("Failed to save config: {}", e.getMessage());
