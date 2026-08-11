@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "MixinPlayerEntityRenderer"
+    "MixinAvatarRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
