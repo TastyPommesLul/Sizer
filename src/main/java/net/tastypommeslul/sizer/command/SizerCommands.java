@@ -35,7 +35,7 @@ public class SizerCommands {
     }
 
     private static int executeConfig(CommandContext<FabricClientCommandSource> ctx) {
-        ctx.getSource().getClient().schedule(() -> ctx.getSource().getClient().setScreen(SizerClient.configScreen(null)));
+        ctx.getSource().getClient().schedule(() -> ctx.getSource().getClient().gui.setScreen(SizerClient.configScreen(null)));
         return Command.SINGLE_SUCCESS;
     }
 }

@@ -79,10 +79,10 @@ public class SizerClient implements ClientModInitializer {
                 if (config.isEnableLocked()) break;
                 config.enabled = !config.enabled;
                 if (config.enabled) {
-                    client.gui.setOverlayMessage(Component.literal("Enabled Sizer!")
+                    client.gui.hud.setOverlayMessage(Component.literal("Enabled Sizer!")
                             .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), false);
                 } else {
-                    client.gui.setOverlayMessage(Component.literal("Disabled Sizer!")
+                    client.gui.hud.setOverlayMessage(Component.literal("Disabled Sizer!")
                             .withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
                 }
                 saveConfig();
@@ -90,12 +90,12 @@ public class SizerClient implements ClientModInitializer {
             while (biggerKey.consumeClick()) {
                 if (config.scale + config.changeRate <= 2.0f) {
                     config.scale += config.changeRate;
-                    client.gui.setOverlayMessage(
+                    client.gui.hud.setOverlayMessage(
                             Component.literal("Current Size: " + df.format(config.scale)), false
                     );
                 } else {
                     config.scale = 2.0f;
-                    client.gui.setOverlayMessage(
+                    client.gui.hud.setOverlayMessage(
                             Component.literal("Maximum scale reached! " + 2.0), false
                     );
                 }
@@ -104,12 +104,12 @@ public class SizerClient implements ClientModInitializer {
             while (smallerKey.consumeClick()) {
                 if (config.scale - config.changeRate >= 0.25f) {
                     config.scale -= config.changeRate;
-                    Minecraft.getInstance().gui.setOverlayMessage(
+                    Minecraft.getInstance().gui.hud.setOverlayMessage(
                             Component.literal("Current Size: " + df.format(config.scale)), false
                     );
                 } else {
                     config.scale = 0.25f;
-                    Minecraft.getInstance().gui.setOverlayMessage(
+                    Minecraft.getInstance().gui.hud.setOverlayMessage(
                             Component.literal("Minimum scale reached! " + 0.25), false
                     );
                 }

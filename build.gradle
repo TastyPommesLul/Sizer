@@ -31,7 +31,7 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-    include(implementation("com.moulberry:lattice:2.0.1+26.1"))
+    include(implementation("com.moulberry:lattice:2.1.0"))
     implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
