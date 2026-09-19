@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.tastypommeslul.sizer.mixin",
+  "package": "dev.tastypommeslul.sizer.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],

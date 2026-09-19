@@ -14,9 +14,11 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "net.tastypommeslul.sizer.SizerClient"
+      "dev.tastypommeslul.sizer.SizerClient"
     ],
-    "modmenu": ["net.tastypommeslul.sizer.compat.ModMenuImpl"]
+    "modmenu": [
+      "dev.tastypommeslul.sizer.compat.ModMenuImpl"
+    ]
   },
 
   "mixins": [
