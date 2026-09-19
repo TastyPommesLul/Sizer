@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.network.chat.Component;
+import net.tastypommeslul.sizer.MultiVersionUtils;
 import net.tastypommeslul.sizer.SizerClient;
 import net.tastypommeslul.sizer.command.argument.ToggleOptions;
 import net.tastypommeslul.sizer.command.argument.ToggleOptionsType;
@@ -35,7 +36,7 @@ public class SizerCommands {
     }
 
     private static int executeConfig(CommandContext<FabricClientCommandSource> ctx) {
-        ctx.getSource().getClient().schedule(() -> ctx.getSource().getClient().gui.setScreen(SizerClient.configScreen(null)));
+        ctx.getSource().getClient().schedule(() -> MultiVersionUtils.setScreen(ctx.getSource().getClient(), SizerClient.configScreen(null)));
         return Command.SINGLE_SUCCESS;
     }
 }

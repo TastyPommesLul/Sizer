@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AvatarRenderer.class)
 public class MixinAvatarRenderer {
     @Inject(method = "scale(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V", at = @At("HEAD"))
-    private void scale(AvatarRenderState avatarRenderState, PoseStack poseStack, CallbackInfo ci) {
+    private void scale(AvatarRenderState state, PoseStack poseStack, CallbackInfo ci) {
         if (SizerClient.config == null || !SizerClient.config.enabled) return;
         if (!SizerClient.config.everyone) {
-            if (avatarRenderState.id != Minecraft.getInstance().player.getId()) return;
+            if (state.id != Minecraft.getInstance().player.getId()) return;
         }
         if (SizerClient.config.aprilFools) {
             aprilFoolsUpdate(poseStack, SizerClient.config.useDifferentValues);
