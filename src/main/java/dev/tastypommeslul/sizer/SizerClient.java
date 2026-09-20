@@ -85,6 +85,7 @@ public class SizerClient implements ClientModInitializer {
                 }
                 saveConfig();
             }
+
             while (biggerKey.consumeClick()) {
                 if (config.scale + config.changeRate <= 2.0f) {
                     config.scale += config.changeRate;
@@ -99,6 +100,7 @@ public class SizerClient implements ClientModInitializer {
                 }
                 saveConfig();
             }
+
             while (smallerKey.consumeClick()) {
                 if (config.scale - config.changeRate >= 0.25f) {
                     config.scale -= config.changeRate;

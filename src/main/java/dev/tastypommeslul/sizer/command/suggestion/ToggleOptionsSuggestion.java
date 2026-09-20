@@ -21,6 +21,7 @@ public class ToggleOptionsSuggestion implements SuggestionProvider<FabricClientC
         for (String arg : args) {
             builder.suggest(arg);
         }
+
         return builder.buildFuture();
     }
 }

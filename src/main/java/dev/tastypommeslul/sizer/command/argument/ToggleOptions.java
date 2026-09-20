@@ -29,6 +29,7 @@ public enum ToggleOptions {
     public String getReadable() {
         return getConfigValue() ? "On" : "Off";
     }
+
     @Override
     public String toString() {
         return name().toLowerCase();
