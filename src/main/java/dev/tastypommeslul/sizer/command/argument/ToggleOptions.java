@@ -26,8 +26,8 @@ public enum ToggleOptions {
         };
     }
 
-    public String getReadable(boolean bool) {
-        return bool ? "On" : "Off";
+    public String getReadable() {
+        return getConfigValue() ? "On" : "Off";
     }
     @Override
     public String toString() {

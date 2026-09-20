@@ -25,7 +25,7 @@ public class SizerCommands {
                             .executes(ctx -> {
                                 ToggleOptions opt = ctx.getArgument("toggle", ToggleOptions.class);
                                 opt.toggleConfigValue();
-                                ctx.getSource().sendFeedback(Component.literal(opt + " set to " + opt.getReadable(opt.getConfigValue()) + " (" + opt.getConfigValue() + ")"));
+                                ctx.getSource().sendFeedback(Component.literal(opt + " set to " + opt.getReadable() + " (" + opt.getConfigValue() + ")"));
                                 return Command.SINGLE_SUCCESS;
                             })));
 
