@@ -63,9 +63,3 @@ tasks.named<Jar>("jar") {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
-
-stonecutter {
-    replacements.string(current.parsed >= "26.3") {
-        replace("KEYSYM", "KEYBOARD")
-    }
-}

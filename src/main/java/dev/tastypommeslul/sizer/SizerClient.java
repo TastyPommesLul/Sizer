@@ -52,19 +52,19 @@ public class SizerClient implements ClientModInitializer {
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("sizer","sizer"));
     private static void registerKeyBindings() {
         toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.sizer.toggle",
-                InputConstants.Type.KEYBOARD,
+                MultiVersionUtils.getType(),
                 InputConstants.KEY_O,
                 CATEGORY
         ));
         biggerKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.sizer.bigger",
-                InputConstants.Type.KEYBOARD,
+                MultiVersionUtils.getType(),
                 InputConstants.KEY_EQUALS,
                 CATEGORY
         ));
         smallerKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.sizer.smaller",
-                InputConstants.Type.KEYBOARD,
+                MultiVersionUtils.getType(),
                 InputConstants.KEY_MINUS,
                 CATEGORY
         ));
